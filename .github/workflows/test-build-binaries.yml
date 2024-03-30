@@ -168,15 +168,30 @@ jobs:
       - name: Remove extended attributes
         run: |
           xattr -cr ./dist/MusicLedStudio.app
-      - name: Create MusicLedStudio tarball
+      - name: Package OS X (intel) archive
         run: |
-          tar -cvf MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar ./dist/MusicLedStudio.app
-      - name: Upload MusicLedStudio Binary
+          xattr -cr dist/MusicLedStudio.app
+          chmod +x dist/MusicLedStudio.app/Contents/MacOS/MusicLedStudio
+          cd dist
+          tar c MusicLedStudio.app | gzip --best > ../MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar.gz
+          cd ..
+          rm -rf dist/*
+      - name: Upload MusicLedStudio OS X (intel) archive
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel
-          path: ${{ github.workspace }}/dist/*
+          name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar.gz
+          # path: ${{ github.workspace }}/dist/*
+          path: ${{ github.workspace }}/*.tar.gz
+      # - name: Create MusicLedStudio tarball
+      #   run: |
+      #     tar -cvf MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar ./dist/MusicLedStudio.app
+      # - name: Upload MusicLedStudio Binary
+      #   uses: actions/upload-artifact@v4
+      #   if: always()
+      #   with:
+      #     name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel
+      #     path: ${{ github.workspace }}/dist/*
   build-ledfx-osx-m1:
     name: Build MusicLedStudio (OS X) (Apple Silicon)
     runs-on: macos-14

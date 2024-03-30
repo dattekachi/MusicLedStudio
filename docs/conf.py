@@ -32,7 +32,7 @@ PROJECT_LONG_DESCRIPTION = (
     "designed to synchronize reactive effects across "
     "various networked devices."
 )
-PROJECT_GITHUB_USERNAME = "MusicLedStudio"
+PROJECT_GITHUB_USERNAME = "dattekachi"
 PROJECT_GITHUB_REPOSITORY = "MusicLedStudio"
 PROJECT_GITHUB_BRANCH = "main"
 PROJECT_GITHUB_PATH = f"{PROJECT_GITHUB_USERNAME}/{PROJECT_GITHUB_REPOSITORY}"
