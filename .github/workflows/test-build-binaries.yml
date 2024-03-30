@@ -361,38 +361,39 @@ jobs:
           tar c MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}.app | gzip --best > ../MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar.gz
           cd ..
           rm -rf dist/*
-      - name: Download Windows (x64) Binary
-        uses: actions/download-artifact@v4
-        with:
-          name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-windows-x64
-          path: dist/
-      - name: Create zip for Windows (x64)
-        run: |
-          mv dist/MusicLedStudio dist/MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}
-          cd dist
-          zip -r ../MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-win-x64.zip MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}
-          cd ..
-          rm -rf dist/*
-      - name: Download OS X (arm64) Binary
-        uses: actions/download-artifact@v4
-        with:
-          name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-arm64
-          path: dist/
-      - name: Package OS X (arm64) archive
-        run: |
-          xattr -cr dist/MusicLedStudio.app
-          chmod +x dist/MusicLedStudio.app/Contents/MacOS/MusicLedStudio
-          mv dist/MusicLedStudio.app dist/MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}.app
-          cd dist
-          tar c MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}.app | gzip --best > ../MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-arm64.tar.gz
-          cd ..
-          rm -rf dist/*
       - name: Upload MusicLedStudio OS X (intel) archive
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar.gz
-          path: ${{ github.workspace }}/dist/*
+          # path: ${{ github.workspace }}/dist/*
+          path: ${{ github.workspace }}/*.tar.gz
+      # - name: Download Windows (x64) Binary
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-windows-x64
+      #     path: dist/
+      # - name: Create zip for Windows (x64)
+      #   run: |
+      #     mv dist/MusicLedStudio dist/MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}
+      #     cd dist
+      #     zip -r ../MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-win-x64.zip MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}
+      #     cd ..
+      #     rm -rf dist/*
+      # - name: Download OS X (arm64) Binary
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-arm64
+      #     path: dist/
+      # - name: Package OS X (arm64) archive
+      #   run: |
+      #     xattr -cr dist/MusicLedStudio.app
+      #     chmod +x dist/MusicLedStudio.app/Contents/MacOS/MusicLedStudio
+      #     mv dist/MusicLedStudio.app dist/MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}.app
+      #     cd dist
+      #     tar c MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}.app | gzip --best > ../MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-arm64.tar.gz
+      #     cd ..
+      #     rm -rf dist/*
       # - name: Release
       #   uses: softprops/action-gh-release@v2
       #   with:
