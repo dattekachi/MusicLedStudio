@@ -6,7 +6,8 @@ import time
 import warnings
 import webbrowser
 from concurrent.futures import ThreadPoolExecutor
-import subprocess
+if sys.platform != "win32":
+    import subprocess
 
 import numpy as np
 import pybase64
