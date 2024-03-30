@@ -170,7 +170,7 @@ class MusicLedStudioCore:
         if sys.platform == "win32":
             os.startfile("C:\\Program Files\\Ambilight App\\bin\\ambilightapp.exe")
         else:
-            subprocess.Popen(["open", "/Applications/Ambilight App.app"])
+            subprocess.Popen(["open", "/Applications/AmbilightApp.app"])
 
     def restart_app(self):
         self.stop(exit_code=4)
