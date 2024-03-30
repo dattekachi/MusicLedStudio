@@ -64,7 +64,7 @@ app = BUNDLE(exe,
           a.datas,
           name='MusicLedStudio',
           icon=f'{spec_root}/ledfx_assets/logo.icns',
-          bundle_identifier=None,
+          bundle_identifier='com.ledfx.ledfx',
           version=f'{PROJECT_VERSION}',
           info_plist={
               'CFBundleShortVersionString': f'{PROJECT_VERSION}',
