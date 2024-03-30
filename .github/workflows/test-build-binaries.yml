@@ -387,15 +387,21 @@ jobs:
           tar c MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}.app | gzip --best > ../MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-arm64.tar.gz
           cd ..
           rm -rf dist/*
-      - name: Release
-        uses: softprops/action-gh-release@v2
+      - name: Upload MusicLedStudio OS X (intel) archive
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
-          files: |
-            MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-win-x64.zip
-            MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar.gz
-            MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-arm64.tar.gz
-          name: MusicLedStudio ${{ steps.ledfx-version.outputs.ledfx-version }}
-          generate_release_notes: true
+          name: MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar.gz
+          path: ${{ github.workspace }}/dist/*
+      # - name: Release
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     files: |
+      #       MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-win-x64.zip
+      #       MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-intel.tar.gz
+      #       MusicLedStudio-${{ steps.ledfx-version.outputs.ledfx-version }}-osx-arm64.tar.gz
+      #     name: MusicLedStudio ${{ steps.ledfx-version.outputs.ledfx-version }}
+      #     generate_release_notes: true
 
   # build-test-wheel-and-sdist:
   #   name: Build MusicLedStudio (PyPi)
