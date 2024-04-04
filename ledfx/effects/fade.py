@@ -11,7 +11,7 @@ class FadeEffect(TemporalEffect, GradientEffect):
     """
 
     NAME = "Fade"
-    CATEGORY = "Non-Reactive"
+    CATEGORY = "Không nháy theo nhạc"
     HIDDEN_KEYS = ["gradient_roll"]
 
     CONFIG_SCHEMA = vol.Schema(

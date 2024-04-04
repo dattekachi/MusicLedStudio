@@ -210,7 +210,7 @@ class TemporalGradientEffect(TemporalEffect, GradientEffect, ModulateEffect):
     """
 
     NAME = "Gradient"
-    CATEGORY = "Non-Reactive"
+    CATEGORY = "Không nháy theo nhạc"
 
     def on_activate(self, pixel_count):
         pass

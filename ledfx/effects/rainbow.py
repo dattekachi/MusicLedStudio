@@ -6,7 +6,7 @@ from ledfx.effects.temporal import TemporalEffect
 
 class RainbowEffect(TemporalEffect):
     NAME = "Rainbow"
-    CATEGORY = "Non-Reactive"
+    CATEGORY = "Không nháy theo nhạc"
 
     CONFIG_SCHEMA = vol.Schema(
         {
