@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react'
 import BladeIcon from '../../../Icons/BladeIcon/BladeIcon'
 import BladeFrame from '../BladeFrame'
 import { BladeSelectDefaultProps, BladeSelectProps } from './BladeSelect.props'
-import { Ledfx } from '../../../../api/ledfx'
+import { Mls } from '../../../../api/mls'
 import GifPicker from '../Gif/GifPicker'
 import GifFramePicker from '../Gif/GifFramePicker'
 
@@ -227,7 +227,7 @@ const BladeSelect = ({
                 onClick={async () => {
                   if (model.ip_address === undefined || model.ip_address === '')
                     return
-                  const { auth_token } = await Ledfx(
+                  const { auth_token } = await Mls(
                     '/api/get_nanoleaf_token',
                     'POST',
                     {

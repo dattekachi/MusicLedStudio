@@ -40,9 +40,9 @@ export default function HostManager() {
   const coreParams = useStore((state) => state.coreParams);
   const coreStatus = useStore((state) => state.coreStatus);
   const setHost = useStore((state) => state.setHost);
-  const storedURL = window.localStorage.getItem('ledfx-host');
+  const storedURL = window.localStorage.getItem('mls-host');
   const storedURLs = JSON.parse(
-    window.localStorage.getItem('ledfx-hosts') ||
+    window.localStorage.getItem('mls-hosts') ||
       JSON.stringify(['http://localhost:8888'])
   );
   const [hosts, setHosts] = useState(['http://localhost:8888']);
@@ -56,12 +56,12 @@ export default function HostManager() {
     if (connect) setHost(ho);
     if (!hosts.some((h) => h === ho)) {
       window.localStorage.setItem(
-        'ledfx-hosts',
+        'mls-hosts',
         JSON.stringify([...hosts, ho])
       );
       setHosts([...hosts, ho]);
     } else {
-      window.localStorage.setItem('ledfx-hosts', JSON.stringify([...hosts]));
+      window.localStorage.setItem('mls-hosts', JSON.stringify([...hosts]));
       setHosts([...hosts]);
     }
     setDisconnected(false);
@@ -71,7 +71,7 @@ export default function HostManager() {
   const handleDelete = (e: any, title: string) => {
     e.stopPropagation();
     window.localStorage.setItem(
-      'ledfx-hosts',
+      'mls-hosts',
       JSON.stringify(hosts.filter((h) => h !== title))
     );
     setHosts(hosts.filter((h) => h !== title));
@@ -91,7 +91,7 @@ export default function HostManager() {
           : window.location.href.split('/#')[0].replace(/\/+$/, '')
       );
       window.localStorage.setItem(
-        'ledfx-host',
+        'mls-host',
         isElectron()
           ? 'http://localhost:8888'
           : window.location.href.split('/#')[0].replace(/\/+$/, '')

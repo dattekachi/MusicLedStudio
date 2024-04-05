@@ -30,7 +30,7 @@ Usually starts with "Traceback (most recent call last):"
 **MusicLedStudio Host Information (please complete the following information):**
  - OS: [e.g. iOS]
  - Installation Method: [e.g. Anaconda, Python, Windows EXE, pip]
- - MusicLedStudio Version:  [e.g. 0.8.9 - use ledfx --version to find out]
+ - MusicLedStudio Version:  [e.g. 0.8.9 - use mls --version to find out]
 
 **Additional context**
 Add any other context about the problem here.

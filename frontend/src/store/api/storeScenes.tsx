@@ -3,7 +3,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore } from '../useStore'
 
 const storeScenes = (set: any) => ({
@@ -92,7 +92,7 @@ const storeScenes = (set: any) => ({
     )
   },
   getScenes: async () => {
-    const resp = await Ledfx('/api/scenes')
+    const resp = await Mls('/api/scenes')
     if (resp && resp.scenes) {
       set(
         produce((s: IStore) => {
@@ -115,7 +115,7 @@ const storeScenes = (set: any) => ({
     virtuals?: Record<string, any>
   ) =>
     virtuals
-      ? await Ledfx('/api/scenes', 'POST', {
+      ? await Mls('/api/scenes', 'POST', {
           name,
           scene_image,
           scene_tags,
@@ -124,7 +124,7 @@ const storeScenes = (set: any) => ({
           scene_midiactivate,
           virtuals
         })
-      : await Ledfx('/api/scenes', 'POST', {
+      : await Mls('/api/scenes', 'POST', {
           name,
           scene_image,
           scene_tags,
@@ -151,22 +151,22 @@ const storeScenes = (set: any) => ({
       false,
       'setScenes'
     )
-    return await Ledfx('/api/scenes', 'PUT', {
+    return await Mls('/api/scenes', 'PUT', {
       id,
       action: 'activate'
     })
   },
   activateSceneIn: async (id: string, ms: number) =>
-    await Ledfx('/api/scenes', 'PUT', {
+    await Mls('/api/scenes', 'PUT', {
       id,
       action: 'activate_in',
       ms
     }),
   deleteScene: async (name: string) =>
-    await Ledfx('/api/scenes', 'DELETE', { data: { id: name } }),
+    await Mls('/api/scenes', 'DELETE', { data: { id: name } }),
 
   captivateScene: async (scene_puturl: string, scene_payload: string) =>
-    await Ledfx(scene_puturl, 'PUT', JSON.parse(scene_payload))
+    await Mls(scene_puturl, 'PUT', JSON.parse(scene_payload))
 })
 
 export default storeScenes

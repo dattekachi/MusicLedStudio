@@ -1,12 +1,12 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore } from '../useStore'
 
 const storeIntegrationsSpotify = (set: any) => ({
   getSpTriggers: async () => {
-    const resp = await Ledfx('/api/integrations', set, 'GET')
+    const resp = await Mls('/api/integrations', set, 'GET')
     // const res = await resp.json()
     if (resp) {
       set(
@@ -24,7 +24,7 @@ const storeIntegrationsSpotify = (set: any) => ({
     song_name,
     song_position
   }: any) => {
-    await Ledfx('/api/integrations/spotify/spotify', 'POST', {
+    await Mls('/api/integrations/spotify/spotify', 'POST', {
       scene_id,
       song_id,
       song_name,
@@ -37,7 +37,7 @@ const storeIntegrationsSpotify = (set: any) => ({
     song_name,
     song_position
   }: any) => {
-    await Ledfx('/api/integrations/spotify/spotify', 'PUT', {
+    await Mls('/api/integrations/spotify/spotify', 'PUT', {
       scene_id,
       song_id,
       song_name,
@@ -45,9 +45,9 @@ const storeIntegrationsSpotify = (set: any) => ({
     })
   },
   toggleSpTrigger: (SpotifyId: string, config: any) =>
-    Ledfx(`/api/integrations/spotify/${SpotifyId}`, 'PUT', config),
+    Mls(`/api/integrations/spotify/${SpotifyId}`, 'PUT', config),
   deleteSpTrigger: async (config: any) => {
-    await Ledfx('/api/integrations/spotify/spotify', 'DELETE', config)
+    await Mls('/api/integrations/spotify/spotify', 'DELETE', config)
     // set(state=>state.getIntegrations())
   }
 })

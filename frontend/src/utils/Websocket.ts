@@ -10,16 +10,16 @@ import Sockette from 'sockette'
 import isElectron from 'is-electron'
 import useStore from '../store/useStore'
 
-// const ws = new WebSocket(`${window.location.protocol === 'https' ? 'wss' : 'ws'}://${window.localStorage.getItem('ledfx-host')?.split('https://')[0].split('http://')[0] || 'localhost:8888'}/api/websocket`);
-// const ws = new WebSocket(`${(window.localStorage.getItem('ledfx-host') && window.localStorage.getItem('ledfx-host').startsWith('https')) ? 'wss' : 'ws'}://${window.localStorage.getItem('ledfx-host')?.split('https://')[0].split('http://')[0] || 'localhost:8888'}/api/websocket`);
-// const ws = new WebSocket(`wss://${window.localStorage.getItem('ledfx-host')?.split('https://')[0].split('http://')[0].split(':')[0] || 'localhost:8888'}/api/websocket`);
-// const ws = new WebSocket(`${window.localStorage.getItem('ledfx-ws') ? window.localStorage.getItem('ledfx-ws') : 'ws://localhost:8888'}/api/websocket`, (window.localStorage.getItem('ledfx-ws') && window.localStorage.getItem('ledfx-ws').startsWith('wss')) ? 'https' : 'http');
+// const ws = new WebSocket(`${window.location.protocol === 'https' ? 'wss' : 'ws'}://${window.localStorage.getItem('mls-host')?.split('https://')[0].split('http://')[0] || 'localhost:8888'}/api/websocket`);
+// const ws = new WebSocket(`${(window.localStorage.getItem('mls-host') && window.localStorage.getItem('mls-host').startsWith('https')) ? 'wss' : 'ws'}://${window.localStorage.getItem('mls-host')?.split('https://')[0].split('http://')[0] || 'localhost:8888'}/api/websocket`);
+// const ws = new WebSocket(`wss://${window.localStorage.getItem('mls-host')?.split('https://')[0].split('http://')[0].split(':')[0] || 'localhost:8888'}/api/websocket`);
+// const ws = new WebSocket(`${window.localStorage.getItem('mls-ws') ? window.localStorage.getItem('mls-ws') : 'ws://localhost:8888'}/api/websocket`, (window.localStorage.getItem('mls-ws') && window.localStorage.getItem('mls-ws').startsWith('wss')) ? 'https' : 'http');
 // const ws = new WebSocket(`wss://127.0.0.1/api/websocket`, 'wss');
 
 function createSocket() {
   const _ws = new Sockette(
     `${(
-      window.localStorage.getItem('ledfx-host') ||
+      window.localStorage.getItem('mls-host') ||
       (isElectron()
         ? 'http://localhost:8888'
         : window.location.href.split('/#')[0].replace(/\/+$/, ''))

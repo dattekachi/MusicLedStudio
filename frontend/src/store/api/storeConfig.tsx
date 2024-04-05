@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore } from '../useStore'
 import { EffectConfig } from './storeVirtuals'
 
@@ -30,7 +30,7 @@ export interface IPreset {
 }
 export interface IPresets {
   effect: string
-  ledfx_presets: Record<string, IPreset>
+  mls_presets: Record<string, IPreset>
   user_presets: Record<string, IPreset>
 }
 
@@ -50,8 +50,8 @@ export interface ISystemConfig {
   visualisation_fps: number
   transmission_mode?: 'compressed' | 'uncompressed'
   dev_mode: boolean
-  // ledfx_presets: Record<string, Record<string, IPreset>>
-  ledfx_presets: undefined
+  // mls_presets: Record<string, Record<string, IPreset>>
+  mls_presets: undefined
   audio: {
     audio_device: number
     delay_ms: number
@@ -86,7 +86,7 @@ export interface ISystemConfig {
 const storeConfig = (set: any) => ({
   schemas: {} as any,
   getSchemas: async () => {
-    const resp = await Ledfx('/api/schema')
+    const resp = await Mls('/api/schema')
     if (resp) {
       set(
         produce((s: IStore) => {
@@ -100,14 +100,14 @@ const storeConfig = (set: any) => ({
 
   config: {} as ISystemConfig,
   getSystemConfig: async () => {
-    const resp = await Ledfx('/api/config')
+    const resp = await Mls('/api/config')
     if (resp && resp.host) {
       set(
         produce((state: IStore) => {
           state.config = {
             ...resp,
             ...{
-              ledfx_presets: undefined,
+              mls_presets: undefined,
               devices: undefined,
               virtuals: undefined,
               integrations: undefined,
@@ -129,9 +129,9 @@ const storeConfig = (set: any) => ({
     }
   },
   getFullConfig: async () => {
-    const resp = await Ledfx('/api/config')
+    const resp = await Mls('/api/config')
     if (resp && resp.host) {
-      return { ...resp, ...{ ledfx_presets: undefined } }
+      return { ...resp, ...{ mls_presets: undefined } }
     }
     return set(
       produce((state: IStore) => {
@@ -142,9 +142,9 @@ const storeConfig = (set: any) => ({
     )
   },
   getMusicLedStudioPresets: async () => {
-    const resp = await Ledfx('/api/config')
+    const resp = await Mls('/api/config')
     if (resp && resp.host) {
-      return resp.ledfx_presets
+      return resp.mls_presets
     }
     return set(
       produce((state: IStore) => {
@@ -155,7 +155,7 @@ const storeConfig = (set: any) => ({
     )
   },
   getUserPresets: async () => {
-    const resp = await Ledfx('/api/config')
+    const resp = await Mls('/api/config')
     if (resp && resp.host) {
       set(
         produce((state: IStore) => {
@@ -175,10 +175,10 @@ const storeConfig = (set: any) => ({
     )
   },
   setSystemConfig: async (config: any) =>
-    await Ledfx('/api/config', 'PUT', config),
-  deleteSystemConfig: async () => await Ledfx('/api/config', 'DELETE'),
+    await Mls('/api/config', 'PUT', config),
+  deleteSystemConfig: async () => await Mls('/api/config', 'DELETE'),
   importSystemConfig: async (config: any) =>
-    await Ledfx('/api/config', 'POST', config)
+    await Mls('/api/config', 'POST', config)
 })
 
 export default storeConfig

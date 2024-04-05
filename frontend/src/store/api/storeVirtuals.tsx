@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore } from '../useStore'
 
 export type Segment = [
@@ -116,7 +116,7 @@ const storeVirtuals = (set: any) => ({
       'api/setCurrentVirtual'
     ),
   getVirtuals: async () => {
-    const resp = await Ledfx('/api/virtuals')
+    const resp = await Mls('/api/virtuals')
     if (resp) {
       set(
         produce((state: IStore) => {
@@ -136,21 +136,20 @@ const storeVirtuals = (set: any) => ({
       }
     }
   },
-  addVirtual: async (config: any) =>
-    await Ledfx('/api/virtuals', 'POST', config),
+  addVirtual: async (config: any) => await Mls('/api/virtuals', 'POST', config),
   updateVirtual: async (virtId: string, active: boolean) =>
-    await Ledfx(`/api/virtuals/${virtId}`, 'PUT', { active }),
+    await Mls(`/api/virtuals/${virtId}`, 'PUT', { active }),
   deleteVirtual: async (virtId: string) =>
-    await Ledfx(`/api/virtuals/${virtId}`, 'DELETE'),
+    await Mls(`/api/virtuals/${virtId}`, 'DELETE'),
   clearEffect: async (virtId: string) =>
-    await Ledfx(`/api/virtuals/${virtId}/effects`, 'DELETE'),
+    await Mls(`/api/virtuals/${virtId}/effects`, 'DELETE'),
   setEffect: async (
     virtId: string,
     type: string,
     config: any,
     active: boolean
   ) => {
-    const resp = await Ledfx(`/api/virtuals/${virtId}/effects`, 'POST', {
+    const resp = await Mls(`/api/virtuals/${virtId}/effects`, 'POST', {
       type,
       config,
       active
@@ -176,7 +175,7 @@ const storeVirtuals = (set: any) => ({
     config: EffectConfig,
     active: boolean
   ) => {
-    const resp = await Ledfx(`/api/virtuals/${virtId}/effects`, 'PUT', {
+    const resp = await Mls(`/api/virtuals/${virtId}/effects`, 'PUT', {
       type,
       config,
       active
@@ -198,7 +197,7 @@ const storeVirtuals = (set: any) => ({
     }
   },
   copyTo: async (virtId: string, target: string[]) => {
-    const resp = await Ledfx(`/api/virtuals_tools/${virtId}`, 'PUT', {
+    const resp = await Mls(`/api/virtuals_tools/${virtId}`, 'PUT', {
       tool: 'copy',
       target
     })
@@ -208,7 +207,7 @@ const storeVirtuals = (set: any) => ({
     return false
   },
   updateSegments: async (virtId: string, segments: Segment[]) => {
-    const resp = await Ledfx(`/api/virtuals/${virtId}`, 'POST', {
+    const resp = await Mls(`/api/virtuals/${virtId}`, 'POST', {
       segments: [...segments]
     })
     if (resp && resp.status && resp.status === 'success') {
@@ -234,7 +233,7 @@ const storeVirtuals = (set: any) => ({
     stop: number,
     flip: boolean
   ) => {
-    const resp = await Ledfx(`/api/virtuals_tools/${virtId}`, 'PUT', {
+    const resp = await Mls(`/api/virtuals_tools/${virtId}`, 'PUT', {
       tool: 'highlight',
       device,
       start,
@@ -247,7 +246,7 @@ const storeVirtuals = (set: any) => ({
     return false
   },
   highlightOffSegment: async (virtId: string) => {
-    const resp = await Ledfx(`/api/virtuals_tools/${virtId}`, 'PUT', {
+    const resp = await Mls(`/api/virtuals_tools/${virtId}`, 'PUT', {
       tool: 'highlight',
       state: false
     })
@@ -257,7 +256,7 @@ const storeVirtuals = (set: any) => ({
     return false
   },
   calibrationMode: async (virtId: string, mode: 'on' | 'off') => {
-    const resp = await Ledfx(`/api/virtuals_tools/${virtId}`, 'PUT', {
+    const resp = await Mls(`/api/virtuals_tools/${virtId}`, 'PUT', {
       tool: 'calibration',
       mode
     })
@@ -272,7 +271,7 @@ const storeVirtuals = (set: any) => ({
     hold: number,
     fade: number
   ) => {
-    const resp = await Ledfx('/api/virtuals_tools', 'PUT', {
+    const resp = await Mls('/api/virtuals_tools', 'PUT', {
       tool: 'oneshot',
       color,
       ramp,
@@ -291,7 +290,7 @@ const storeVirtuals = (set: any) => ({
     hold: number,
     fade: number
   ) => {
-    const resp = await Ledfx(`/api/virtuals_tools/${virtId}`, 'PUT', {
+    const resp = await Mls(`/api/virtuals_tools/${virtId}`, 'PUT', {
       tool: 'oneshot',
       color,
       ramp,

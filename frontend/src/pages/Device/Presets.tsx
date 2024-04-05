@@ -74,7 +74,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
       }
     )
     const exists = await existing.data
-    const eff = await cloud.get(`effects?ledfx_id=${effectType}`, {
+    const eff = await cloud.get(`effects?mls_id=${effectType}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
@@ -89,7 +89,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
           Name: list[preset].name,
           config: virtual.effect.config,
           effect: effId,
-          user: localStorage.getItem('ledfx-cloud-userid')
+          user: localStorage.getItem('mls-cloud-userid')
         },
         {
           headers: {
@@ -104,7 +104,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
           Name: list[preset].name,
           config: virtual.effect.config,
           effect: effId,
-          user: localStorage.getItem('ledfx-cloud-userid')
+          user: localStorage.getItem('mls-cloud-userid')
         },
         {
           headers: {
@@ -137,7 +137,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
   }
 
   const getCloudPresets = async () => {
-    const response = await cloud.get(`presets?effect.ledfx_id=${effectType}`, {
+    const response = await cloud.get(`presets?effect.mls_id=${effectType}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` }
     })
     if (response.status !== 200) {
@@ -155,10 +155,10 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
   }
 
   const handleCloudPresets = async (p: any, save: boolean) => {
-    await setEffect(virtual.id, p.effect.ledfx_id, p.config, true)
+    await setEffect(virtual.id, p.effect.mls_id, p.config, true)
     if (save) {
       await addPreset(virtual.id, p.Name)
-      await getPresets(p.effect.ledfx_id)
+      await getPresets(p.effect.mls_id)
     }
   }
 
@@ -187,7 +187,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
     if (list && !Object.keys(list)?.length) {
       return (
         <Button style={{ margin: '1rem 0 0.5rem 1rem' }} size="medium" disabled>
-          No {CATEGORY === 'ledfx_presets' ? '' : 'Custom'} Presets
+          No {CATEGORY === 'mls_presets' ? '' : 'Custom'} Presets
         </Button>
       )
     }
@@ -202,7 +202,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
         //   console.log(preset, diff(virtual.effect.config, list[preset].config))
         return (
           <Grid item key={preset}>
-            {CATEGORY !== 'ledfx_presets' ? (
+            {CATEGORY !== 'mls_presets' ? (
               <PresetButton
                 buttonColor={
                   JSON.stringify(virtual.effect.config) ===
@@ -254,7 +254,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
       const promises = Object.keys(cloudEffects).flatMap((effect) => {
         return cloudEffects[effect].map((p: any, ind: number) => {
           return new Promise((resolve) => {
-            if (!presets.user_presets[p.effect.ledfx_id]) {
+            if (!presets.user_presets[p.effect.mls_id]) {
               setTimeout(() => {
                 handleCloudPresets(p, true)
                 resolve(null)
@@ -290,7 +290,7 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
       />
       <CardContent>
         <Grid spacing={2} container>
-          {renderPresetsButton(presets?.ledfx_presets, 'ledfx_presets')}
+          {renderPresetsButton(presets?.mls_presets, 'mls_presets')}
         </Grid>
         <Divider style={{ margin: '1rem 0' }} />
         <Grid spacing={2} container>
@@ -307,18 +307,18 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
                 <TextField
                   onKeyDown={(e: any) => e.key === 'Enter' && handleAddPreset()}
                   error={
-                    presets.ledfx_presets &&
-                    (Object.keys(presets.ledfx_presets).indexOf(name) > -1 ||
-                      Object.values(presets.ledfx_presets).filter(
+                    presets.mls_presets &&
+                    (Object.keys(presets.mls_presets).indexOf(name) > -1 ||
+                      Object.values(presets.mls_presets).filter(
                         (p: any) => p.name === name
                       ).length > 0)
                   }
                   size="small"
                   id="presetNameInput"
                   label={
-                    presets.ledfx_presets &&
-                    (Object.keys(presets.ledfx_presets).indexOf(name) > -1 ||
-                      Object.values(presets.ledfx_presets).filter(
+                    presets.mls_presets &&
+                    (Object.keys(presets.mls_presets).indexOf(name) > -1 ||
+                      Object.values(presets.mls_presets).filter(
                         (p: any) => p.name === name
                       ).length > 0)
                       ? 'Default presets are readonly'
@@ -363,9 +363,9 @@ const PresetsCard = ({ virtual, effectType, presets, style }: any) => {
               }
               confirmDisabled={
                 name.length === 0 ||
-                (presets.ledfx_presets &&
-                  (Object.keys(presets.ledfx_presets).indexOf(name) > -1 ||
-                    Object.values(presets.ledfx_presets).filter(
+                (presets.mls_presets &&
+                  (Object.keys(presets.mls_presets).indexOf(name) > -1 ||
+                    Object.values(presets.mls_presets).filter(
                       (p: any) => p.name === name
                     ).length > 0)) ||
                 !valid

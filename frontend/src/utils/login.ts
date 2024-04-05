@@ -22,8 +22,8 @@ const login = async (search: string) => {
         }
       })
       const user = await me.data
-      localStorage.setItem('ledfx-cloud-userid', user.id)
-      localStorage.setItem('ledfx-cloud-role', user.role.type)
+      localStorage.setItem('mls-cloud-userid', user.id)
+      localStorage.setItem('mls-cloud-role', user.role.type)
       // setTimeout(() => {
       //   return isElectron() ? window.close() : history('/devices')
       // }, 2000)

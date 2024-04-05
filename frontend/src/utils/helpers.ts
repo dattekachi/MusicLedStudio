@@ -74,24 +74,24 @@ export const swap = (array: any[], i: number, j: number) => {
 
 export const deleteFrontendConfig = () => {
   window.localStorage.removeItem('undefined')
-  window.localStorage.removeItem('ledfx-storage')
-  window.localStorage.removeItem('ledfx-host')
-  window.localStorage.removeItem('ledfx-hosts')
-  window.localStorage.removeItem('ledfx-ws')
-  window.localStorage.removeItem('ledfx-theme')
-  window.localStorage.removeItem('ledfx-frontend')
+  window.localStorage.removeItem('mls-storage')
+  window.localStorage.removeItem('mls-host')
+  window.localStorage.removeItem('mls-hosts')
+  window.localStorage.removeItem('mls-ws')
+  window.localStorage.removeItem('mls-theme')
+  window.localStorage.removeItem('mls-frontend')
   window.location.reload()
 }
 
 export const initFrontendConfig = () => {
   if (
-    parseInt(window.localStorage.getItem('ledfx-frontend') || '0', 10) >=
+    parseInt(window.localStorage.getItem('mls-frontend') || '0', 10) >=
     frontendConfig
   ) {
     return
   }
   deleteFrontendConfig()
-  window.localStorage.setItem('ledfx-frontend', `${frontendConfig}`)
+  window.localStorage.setItem('mls-frontend', `${frontendConfig}`)
 }
 
 export const log = (...props: any[]) => {

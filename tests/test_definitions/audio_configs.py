@@ -8,7 +8,7 @@ CONFIG_KEYS_TO_TEST = [
 ]
 
 
-def get_ledfx_audio_configs():
+def get_mls_audio_configs():
     audio_configs_to_test = {}
     http_session = HTTPSession()
     try:

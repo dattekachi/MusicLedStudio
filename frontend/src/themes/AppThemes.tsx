@@ -231,7 +231,7 @@ export const MusicLedStudioLightBlueTheme = createTheme({
   }
 })
 
-export const ledfxThemes = {
+export const mlsThemes = {
   Dark: MusicLedStudioDarkTheme,
   DarkRed: MusicLedStudioDarkTheme,
   DarkOrange: MusicLedStudioDarkOrangeTheme,
@@ -244,12 +244,12 @@ export const ledfxThemes = {
 } as any
 
 /* eslint-disable @typescript-eslint/indent */
-export const ledfxTheme =
-  (window.localStorage.getItem('ledfx-theme')
-    ? window.localStorage.getItem('ledfx-theme')
+export const mlsTheme =
+  (window.localStorage.getItem('mls-theme')
+    ? window.localStorage.getItem('mls-theme')
     : window.localStorage.getItem('hassTokens')
     ? 'DarkBlue'
-    : window.location.origin === 'https://my.ledfx.app'
+    : window.location.origin === 'https://my.mls.app'
     ? 'DarkGreen'
     : isElectron()
     ? 'DarkOrange'

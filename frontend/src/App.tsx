@@ -13,7 +13,7 @@ import { deleteFrontendConfig, initFrontendConfig } from './utils/helpers'
 import WaveLines from './components/Icons/waves'
 import Pages from './pages/Pages'
 import SpotifyProvider from './components/Integrations/Spotify/SpotifyProvider'
-import { ledfxThemes, ledfxTheme, common } from './themes/AppThemes'
+import { mlsThemes, mlsTheme, common } from './themes/AppThemes'
 import xmas from './assets/xmas.png'
 import newyear from './assets/fireworks.jpg'
 import login from './utils/login'
@@ -36,10 +36,10 @@ export default function App() {
   const theme = useMemo(
     () =>
       createTheme({
-        ...ledfxThemes[ledfxTheme],
+        ...mlsThemes[mlsTheme],
         ...common,
         palette: {
-          ...ledfxThemes[ledfxTheme].palette
+          ...mlsThemes[mlsTheme].palette
           // mode: darkMode ? 'dark' : 'light',
           // background: darkMode
           //   ? {
@@ -66,7 +66,7 @@ export default function App() {
     // eslint-disable-next-line no-console
     console.info(
       // eslint-disable-next-line no-useless-concat
-      '%c Ledfx Frontend' + '%c\n',
+      '%c Mls Frontend' + '%c\n',
       'padding: 10px 40px; color: #ffffff; border-radius: 5px 5px 0 0; background-color: #800000;',
       'background: #fff; color: #800000; border-radius: 0 0 5px 5px;padding: 5px 0;'
     )

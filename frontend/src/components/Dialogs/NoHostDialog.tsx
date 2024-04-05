@@ -26,9 +26,9 @@ export default function NoHostDialog() {
   const setDisconnected = useStore((state) => state.setDisconnected);
   // const coreParams = useStore((state) => state.coreParams);
   const setHost = useStore((state) => state.setHost);
-  const storedURL = window.localStorage.getItem('ledfx-host');
+  const storedURL = window.localStorage.getItem('mls-host');
   const storedURLs = JSON.parse(
-    window.localStorage.getItem('ledfx-hosts') ||
+    window.localStorage.getItem('mls-hosts') ||
       JSON.stringify(['http://localhost:8888'])
   );
   const [hosts, setHosts] = useState(['http://localhost:8888']);
@@ -42,11 +42,11 @@ export default function NoHostDialog() {
     setHost(ho);
     if (!hosts.some((h) => h === ho)) {
       window.localStorage.setItem(
-        'ledfx-hosts',
+        'mls-hosts',
         JSON.stringify([...hosts, ho])
       );
     } else {
-      window.localStorage.setItem('ledfx-hosts', JSON.stringify([...hosts]));
+      window.localStorage.setItem('mls-hosts', JSON.stringify([...hosts]));
     }
     setDialogOpen(false);
     setDisconnected(false);
@@ -56,7 +56,7 @@ export default function NoHostDialog() {
   const handleDelete = (e: any, title: string) => {
     e.stopPropagation();
     window.localStorage.setItem(
-      'ledfx-hosts',
+      'mls-hosts',
       JSON.stringify(hosts.filter((h) => h !== title))
     );
     setHosts(hosts.filter((h) => h !== title));
@@ -76,7 +76,7 @@ export default function NoHostDialog() {
           : window.location.href.split('/#')[0].replace(/\/+$/, '')
       );
       window.localStorage.setItem(
-        'ledfx-host',
+        'mls-host',
         isElectron()
           ? 'http://localhost:8888'
           : window.location.href.split('/#')[0].replace(/\/+$/, '')

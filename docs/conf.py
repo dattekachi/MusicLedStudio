@@ -18,8 +18,8 @@ import sphinx_rtd_theme
 
 sys.path.insert(0, os.path.abspath(".."))
 
-import ledfx.consts as const
-from ledfx.consts import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_VERSION
+import mls.consts as const
+from mls.consts import PROJECT_AUTHOR, PROJECT_NAME, PROJECT_VERSION
 
 # -- Project information -----------------------------------------------------
 
@@ -122,7 +122,7 @@ html_context = {
 }
 # TODO: Use os.path.join for these instead of hardcoding
 html_logo = "_static/small_white_alpha.png"
-html_favicon = "../ledfx_assets/favicon.ico"
+html_favicon = "../mls_assets/favicon.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

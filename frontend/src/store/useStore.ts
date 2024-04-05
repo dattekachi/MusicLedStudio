@@ -58,7 +58,7 @@ const useStore = create(
         ...storeCloud(set)
       })),
       {
-        name: 'ledfx-storage',
+        name: 'mls-storage',
         partialize: (state) =>
           Object.fromEntries(
             Object.entries(state).filter(

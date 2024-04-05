@@ -131,7 +131,7 @@ class HTTPSession:
 
 class EnvironmentCleanup:
     @staticmethod
-    def shutdown_ledfx():
+    def shutdown_mls():
         """
         Shuts down the MusicLedStudio server by sending a POST request to the power endpoint
         and waits for the server to stop responding.
@@ -184,7 +184,7 @@ class EnvironmentCleanup:
             pytest.fail("Unable to remove the test config folder.")
 
     @staticmethod
-    def ledfx_is_alive():
+    def mls_is_alive():
         """
         Checks to see if MusicLedStudio is running by sending a GET request to the schema endpoint.
 
@@ -220,7 +220,7 @@ class SystemInfo:
     def calc_available_fps():
         """
         Calculate the available frames per second (fps) based on the system's clock resolution.
-        Note: This comes from the ledfx/utils.py file
+        Note: This comes from the mls/utils.py file
 
         Returns:
             dict: A dictionary where the keys represent the fps and the values represent the corresponding tick value.

@@ -39,7 +39,7 @@ import TourIntegrations from '../Tours/TourIntegrations'
 import BladeIcon from '../Icons/BladeIcon/BladeIcon'
 import GlobalActionBar from '../GlobalActionBar'
 
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import TourHome from '../Tours/TourHome'
 
 export const StyledBadge = styled(Badge)(() => ({
@@ -180,7 +180,7 @@ const TopBar = () => {
   const updateNotificationInterval = useStore(
     (state) => state.updateNotificationInterval
   )
-  const isCreator = localStorage.getItem('ledfx-cloud-role') === 'creator'
+  const isCreator = localStorage.getItem('mls-cloud-role') === 'creator'
   const invisible = () => {
     switch (pathname.split('/')[1]) {
       case 'device':
@@ -225,8 +225,8 @@ const TopBar = () => {
     e.preventDefault()
     localStorage.removeItem('jwt')
     localStorage.removeItem('username')
-    localStorage.removeItem('ledfx-cloud-userid')
-    localStorage.removeItem('ledfx-cloud-role')
+    localStorage.removeItem('mls-cloud-userid')
+    localStorage.removeItem('mls-cloud-role')
     setIsLogged(false)
   }
 
@@ -252,7 +252,7 @@ const TopBar = () => {
             ) >
           updateNotificationInterval * 1000 * 60
         ) {
-          Ledfx('/api/notify', 'PUT', {
+          Mls('/api/notify', 'PUT', {
             title: 'Update available',
             text: 'A new version of MusicLedStudio has been released'
           })
@@ -408,10 +408,10 @@ const TopBar = () => {
                     <ListItemIcon style={{ marginTop: -13 }}>
                       <StyledBadge
                         badgeContent={
-                          localStorage.getItem('ledfx-cloud-role') ===
+                          localStorage.getItem('mls-cloud-role') ===
                           'authenticated'
                             ? 'logged in'
-                            : localStorage.getItem('ledfx-cloud-role')
+                            : localStorage.getItem('mls-cloud-role')
                         }
                         color="primary"
                       >

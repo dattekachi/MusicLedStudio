@@ -5,7 +5,7 @@ import {
   SwapVert
 } from '@mui/icons-material'
 import { Box, Button, Slider, Stack } from '@mui/material'
-import { Ledfx } from '../../../../api/ledfx'
+import { Mls } from '../../../../api/mls'
 import Popover from '../../../../components/Popover/Popover'
 import { transpose } from '../../../../utils/helpers'
 import { MCell } from './M.utils'
@@ -93,7 +93,7 @@ const MControls = ({
 
           <Button
             onClick={() =>
-              Ledfx('/api/virtuals', 'POST', {
+              Mls('/api/virtuals', 'POST', {
                 config: {
                   ...virtual.config,
                   rows: rowN

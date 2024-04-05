@@ -1,5 +1,5 @@
 {
-  "name": "ledfx",
+  "name": "mls",
   "description": "MusicLedStudio Frontend",
   "author": "MusicLedStudio Developers",
   "private": true,
@@ -71,8 +71,8 @@
     "build": "run-script-os",
     "build:win32": "set GENERATE_SOURCEMAP=false && react-scripts build",
     "build:default": "GENERATE_SOURCEMAP=false react-scripts build",
-    "add_frontend_win": "rmdir ..\\ledfx_frontend /s /q && set GENERATE_SOURCEMAP=false && react-scripts build && move build ..\\ledfx_frontend",
-    "add_frontend_linux": "rm -rf ../ledfx_frontend && react-scripts build && mv build ../ledfx_frontend",
+    "add_frontend_win": "rmdir ..\\mls_frontend /s /q && set GENERATE_SOURCEMAP=false && react-scripts build && move build ..\\mls_frontend",
+    "add_frontend_linux": "rm -rf ../mls_frontend && react-scripts build && mv build ../mls_frontend",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"

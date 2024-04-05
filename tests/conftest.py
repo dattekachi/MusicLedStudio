@@ -2,10 +2,10 @@ import subprocess
 import time
 
 import pytest
-from test_definitions.all_effects import get_ledfx_effects
+from test_definitions.all_effects import get_mls_effects
 from test_utilities.test_utils import EnvironmentCleanup
 
-from tests.test_definitions.audio_configs import get_ledfx_audio_configs
+from tests.test_definitions.audio_configs import get_mls_audio_configs
 from tests.test_utilities.consts import BASE_PORT
 
 
@@ -23,13 +23,13 @@ def pytest_sessionstart(session):
     """
     EnvironmentCleanup.cleanup_test_config_folder()
     # Start MusicLedStudio as a subprocess
-    global ledfx
+    global mls
     try:
-        ledfx = subprocess.Popen(
+        mls = subprocess.Popen(
             [
                 "poetry",
                 "run",
-                "ledfx",
+                "mls",
                 "-p",
                 f"{BASE_PORT}",
                 "--offline",
@@ -51,15 +51,15 @@ def pytest_sessionstart(session):
     # Needs to be done at session start so that the tests are available to pytest
     # This is a hack to get around the fact that pytest doesn't support dynamic imports
     global all_effects
-    all_effects = get_ledfx_effects()
+    all_effects = get_mls_effects()
     global audio_configs
-    audio_configs = get_ledfx_audio_configs()
+    audio_configs = get_mls_audio_configs()
     # To add another test group, add it here, and then in test_apis.py
 
 
 def pytest_sessionfinish(session, exitstatus):
     """
-    Function to terminate the ledfx subprocess.
+    Function to terminate the mls subprocess.
     It is called once at the end of the pytest session, after all tests are run.
     Args:
         session: The pytest session object.
@@ -70,9 +70,9 @@ def pytest_sessionfinish(session, exitstatus):
     """
     # send MusicLedStudio a shutdown signal
     try:
-        EnvironmentCleanup.shutdown_ledfx()
+        EnvironmentCleanup.shutdown_mls()
     except Exception as e:
         pytest.fail(f"An error occurred while shutting down MusicLedStudio: {str(e)}")
     # Wait for MusicLedStudio to terminate
-    while ledfx.poll() is not None:
+    while mls.poll() is not None:
         time.sleep(0.5)

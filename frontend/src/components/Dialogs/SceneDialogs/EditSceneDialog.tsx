@@ -49,7 +49,7 @@ const EditSceneDialog = () => {
   const [payload, setPayload] = useState('')
   const [midiActivate, setMIDIActivate] = useState('')
   const [invalid, setInvalid] = useState(false)
-  const [ledfx_presets, setMusicLedStudioPresets] = useState({} as any)
+  const [mls_presets, setMusicLedStudioPresets] = useState({} as any)
   const [user_presets, setUserPresets] = useState({} as any)
   const [disabledPSelector, setDisabledPSelector] = useState([] as string[])
   const [scVirtualsToIgnore, setScVirtualsToIgnore] = useState<string[]>([])
@@ -258,19 +258,18 @@ const EditSceneDialog = () => {
   }, [])
 
   const renderPresets = (
-    current_ledfx_presets: any,
+    current_mls_presets: any,
     dev: string,
     effectId: string
   ) => {
-    if (current_ledfx_presets) {
-      const ledfxPreset =
-        current_ledfx_presets &&
-        Object.keys(current_ledfx_presets).length > 0 &&
-        Object.keys(current_ledfx_presets).find(
+    if (current_mls_presets) {
+      const mlsPreset =
+        current_mls_presets &&
+        Object.keys(current_mls_presets).length > 0 &&
+        Object.keys(current_mls_presets).find(
           (k) =>
-            JSON.stringify(
-              ordered((current_ledfx_presets[k] as any).config)
-            ) === JSON.stringify(ordered(sVirtuals[dev].config))
+            JSON.stringify(ordered((current_mls_presets[k] as any).config)) ===
+            JSON.stringify(ordered(sVirtuals[dev].config))
         )
       const userPresets =
         user_presets[effectId] &&
@@ -291,11 +290,11 @@ const EditSceneDialog = () => {
       const userPreset =
         userPresets && userPresets.length === 1 && userPresets[0]
 
-      return ledfxPreset || userPreset ? (
+      return mlsPreset || userPreset ? (
         <Select
-          defaultValue={ledfxPreset || userPreset}
+          defaultValue={mlsPreset || userPreset}
           onChange={(e) => {
-            let category = 'ledfx_presets'
+            let category = 'mls_presets'
             if (
               user_presets &&
               user_presets[effectId] &&
@@ -327,11 +326,11 @@ const EditSceneDialog = () => {
               scVirtualsToIgnore.indexOf(dev) > -1 ? 'line-through' : ''
           }}
         >
-          {current_ledfx_presets && (
+          {current_mls_presets && (
             <ListSubheader>MusicLedStudio Presets</ListSubheader>
           )}
-          {current_ledfx_presets &&
-            Object.keys(current_ledfx_presets)
+          {current_mls_presets &&
+            Object.keys(current_mls_presets)
               .sort((k) => (k === 'reset' ? -1 : 1))
               .map((ke, i) => (
                 <MenuItem key={ke + i} value={ke}>
@@ -351,7 +350,7 @@ const EditSceneDialog = () => {
         <Select
           defaultValue="Not saved as Preset"
           onChange={(e) => {
-            let category = 'ledfx_presets'
+            let category = 'mls_presets'
             if (
               user_presets &&
               user_presets[effectId] &&
@@ -376,11 +375,11 @@ const EditSceneDialog = () => {
           disableUnderline
         >
           <MenuItem value="Not saved as Preset">Not saved as Preset</MenuItem>
-          {current_ledfx_presets && (
+          {current_mls_presets && (
             <ListSubheader>MusicLedStudio Presets</ListSubheader>
           )}
-          {current_ledfx_presets &&
-            Object.keys(current_ledfx_presets)
+          {current_mls_presets &&
+            Object.keys(current_mls_presets)
               .sort((k) => (k === 'reset' ? -1 : 1))
               .map((ke, i) => (
                 <MenuItem key={ke + i} value={ke}>
@@ -947,9 +946,9 @@ const EditSceneDialog = () => {
                     dev
                   )}
                   <span style={{ width: 180, textAlign: 'right' }}>
-                    {ledfx_presets &&
+                    {mls_presets &&
                       renderPresets(
-                        ledfx_presets[
+                        mls_presets[
                           scenes[data.name?.toLowerCase().replaceAll(' ', '-')]
                             .virtuals[dev].type
                         ],

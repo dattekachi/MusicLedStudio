@@ -120,7 +120,7 @@ export default function PresetButton({
           </ListItemIcon>
           <ListItemText>Copy Preset</ListItemText>
         </MenuItem>
-        {window.localStorage.getItem('ledfx-cloud-role') === 'creator' &&
+        {window.localStorage.getItem('mls-cloud-role') === 'creator' &&
           features.cloud &&
           isLogged && (
             <MenuItem
@@ -135,7 +135,7 @@ export default function PresetButton({
               <ListItemText>Upload to Cloud</ListItemText>
             </MenuItem>
           )}
-        {window.localStorage.getItem('ledfx-cloud-role') === 'creator' &&
+        {window.localStorage.getItem('mls-cloud-role') === 'creator' &&
           features.cloud &&
           isLogged && (
             <MenuItem

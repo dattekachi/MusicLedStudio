@@ -40,7 +40,7 @@ const Instances = ({
   const coreStatus = useStore((state) => state.coreStatus)
   const portRef = useRef<HTMLInputElement>(null)
   const active =
-    window.localStorage.getItem('ledfx-host')?.includes(`localhost:${port}`) ||
+    window.localStorage.getItem('mls-host')?.includes(`localhost:${port}`) ||
     false
 
   const handleStartCore = (e: any, p: number) => {

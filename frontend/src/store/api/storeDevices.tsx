@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore, IOpenRgbDevice } from '../useStore'
 import type { IDevice } from './storeConfig'
 
@@ -11,7 +11,7 @@ const storeDevices = (set: any) => ({
   openRgbDevices: [] as IOpenRgbDevice[],
   launchpadDevice: '' as string,
   getDevices: async () => {
-    const resp = await Ledfx('/api/devices')
+    const resp = await Mls('/api/devices')
     if (resp && resp.devices) {
       set(
         produce((state: IStore) => {
@@ -23,7 +23,7 @@ const storeDevices = (set: any) => ({
     }
   },
   getDevice: async (deviceId: string) => {
-    const resp = await Ledfx(`/api/devices/${deviceId}`)
+    const resp = await Mls(`/api/devices/${deviceId}`)
     if (resp && resp.data) {
       return {
         key: deviceId,
@@ -36,9 +36,9 @@ const storeDevices = (set: any) => ({
     }
     return {}
   },
-  addDevice: async (config: any) => await Ledfx('/api/devices', 'POST', config),
+  addDevice: async (config: any) => await Mls('/api/devices', 'POST', config),
   activateDevice: async (deviceId: string) => {
-    const resp = await Ledfx(`/api/devices/${deviceId}`, 'POST', {})
+    const resp = await Mls(`/api/devices/${deviceId}`, 'POST', {})
     if (resp) {
       set(
         produce((state: IStore) => {
@@ -60,7 +60,7 @@ const storeDevices = (set: any) => ({
     }
   },
   updateDevice: async (deviceId: string, config: any) =>
-    await Ledfx(`/api/devices/${deviceId}`, 'PUT', config)
+    await Mls(`/api/devices/${deviceId}`, 'PUT', config)
 })
 
 export default storeDevices

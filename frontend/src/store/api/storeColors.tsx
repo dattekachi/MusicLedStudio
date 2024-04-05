@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore } from '../useStore'
 
 const storeColors = (set: any) => ({
@@ -17,7 +17,7 @@ const storeColors = (set: any) => ({
     }
   },
   getColors: async () => {
-    const resp = await Ledfx('/api/colors', set)
+    const resp = await Mls('/api/colors', set)
     if (resp) {
       set(
         produce((s: IStore) => {
@@ -30,13 +30,13 @@ const storeColors = (set: any) => ({
   },
   // HERE API DOC
   addColor: async (config: Record<string, string>) =>
-    await Ledfx(
+    await Mls(
       '/api/colors',
       'POST',
       { ...config } // { 'name': 'string' }
     ),
   deleteColors: async (colorkey: string[]) =>
-    await Ledfx('/api/colors', 'DELETE', {
+    await Mls('/api/colors', 'DELETE', {
       data: colorkey
     })
 })

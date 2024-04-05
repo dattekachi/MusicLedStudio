@@ -14,7 +14,7 @@ import BladeIcon from '../../../components/Icons/BladeIcon/BladeIcon'
 
 
 const baseURL = isElectron() ? 'http://localhost:8888' : window.location.href.split('/#')[0].replace(/\/+$/, '') || 'http://localhost:8888';
-const storedURL = window.localStorage.getItem('ledfx-host');
+const storedURL = window.localStorage.getItem('mls-host');
 
 const Circle = () => <div style={{ width: 32, height: 32, backgroundColor: 'transparent', border:'3px solid #fff', borderRadius: '50%' }}  />
 

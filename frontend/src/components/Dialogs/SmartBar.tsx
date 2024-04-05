@@ -96,8 +96,8 @@ const Bar = ({ handleClose, direct, maxWidth = 500, inputRef }: any) => {
               setFeatures('webaudio', false)
               setFeatures('beta', false)
               setFeatures('alpha', false)
-              window.localStorage.removeItem('ledfx-theme')
-              window.localStorage.setItem('ledfxmod', '0')
+              window.localStorage.removeItem('mls-theme')
+              window.localStorage.setItem('mlsmod', '0')
               window.location.reload()
             }
             if (value === 'BladeCloud') {
@@ -144,7 +144,7 @@ const Bar = ({ handleClose, direct, maxWidth = 500, inputRef }: any) => {
               ].indexOf(value.replace('theme:', '')) > -1
             ) {
               window.localStorage.setItem(
-                'ledfx-theme',
+                'mls-theme',
                 value.replace('theme:', '')
               )
               window.location.reload()
@@ -175,7 +175,7 @@ const Bar = ({ handleClose, direct, maxWidth = 500, inputRef }: any) => {
             setFeatures('beta', true)
             setFeatures('alpha', true)
             setFeatures('matrix', true)
-            window.localStorage.setItem('ledfx-theme', 'DarkRed')
+            window.localStorage.setItem('mls-theme', 'DarkRed')
             window.location.reload()
           }
         }}

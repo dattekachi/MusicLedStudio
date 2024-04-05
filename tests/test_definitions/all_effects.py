@@ -2,7 +2,7 @@ import pytest
 from test_utilities.test_utils import SERVER_PATH, APITestCase, HTTPSession
 
 
-def get_ledfx_effects():
+def get_mls_effects():
     effects_to_test = {}
     http_session = HTTPSession()
     try:

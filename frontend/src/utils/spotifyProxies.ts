@@ -10,7 +10,7 @@ const baseURL = isElectron()
   ? 'http://localhost:8888'
   : window.location.href.split('/#')[0].replace(/\/+$/, '') ||
     'http://localhost:8888'
-const storedURL = window.localStorage.getItem('ledfx-host')
+const storedURL = window.localStorage.getItem('mls-host')
 const redirectUrl = `${
   process.env.NODE_ENV === 'production'
     ? storedURL || baseURL

@@ -81,7 +81,7 @@ const AvatarPicker = ({
   useEffect(() => {
     if (
       isLogged &&
-      localStorage.getItem('ledfx-cloud-role') === 'creator' &&
+      localStorage.getItem('mls-cloud-role') === 'creator' &&
       newStorage === 'cloud'
     ) {
       cloud
@@ -172,7 +172,7 @@ const AvatarPicker = ({
                   const getNewUserDetail = cloud.post(
                     'user-details',
                     {
-                      user: localStorage.getItem('ledfx-cloud-userid')
+                      user: localStorage.getItem('mls-cloud-userid')
                     },
                     {
                       headers: {

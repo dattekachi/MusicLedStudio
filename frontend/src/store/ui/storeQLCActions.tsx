@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore } from '../useStore'
 
 const storeQLCActions = (set: any) => ({
@@ -31,7 +31,7 @@ const storeQLCActions = (set: any) => ({
       'qlc/setQLCData'
     ),
   getQLCTriggers: async () => {
-    const resp = await Ledfx('/api/integrations', set, 'GET')
+    const resp = await Mls('/api/integrations', set, 'GET')
     // const res = await resp.json()
     if (resp) {
       set(
@@ -90,7 +90,7 @@ const storeQLCActions = (set: any) => ({
     }
   },
   getQLCWidgets: async () => {
-    const resp = await Ledfx('/api/integrations/qlc/qlc')
+    const resp = await Mls('/api/integrations/qlc/qlc')
     // const res = await resp.json()
     if (resp) {
       set(
@@ -103,16 +103,16 @@ const storeQLCActions = (set: any) => ({
     }
   },
   addQLCSongTrigger: async ({ event_type, event_filter, qlc_payload }: any) => {
-    await Ledfx('/api/integrations/qlc/qlc', 'POST', {
+    await Mls('/api/integrations/qlc/qlc', 'POST', {
       event_type,
       event_filter,
       qlc_payload
     })
   },
   toggleQLCTrigger: (QLCId: string, config: any) =>
-    Ledfx(`/api/integrations/qlc/${QLCId}`, 'PUT', config),
+    Mls(`/api/integrations/qlc/${QLCId}`, 'PUT', config),
   deleteQLCTrigger: async (config: any) => {
-    await Ledfx('/api/integrations/qlc/qlc', 'DELETE', config)
+    await Mls('/api/integrations/qlc/qlc', 'DELETE', config)
     // set(state=>state.getIntegrations())
   }
 })

@@ -217,7 +217,7 @@ const User = () => {
   }, [starred, cloudEffects, setTrophies])
 
   useEffect(() => {
-    if (isLogged && localStorage.getItem('ledfx-cloud-role') === 'creator') {
+    if (isLogged && localStorage.getItem('mls-cloud-role') === 'creator') {
       getCloudPresets()
       getCloudPlaylists()
       getCloudConfigs()
@@ -258,7 +258,7 @@ const User = () => {
             sx={{ mb: 2 }}
             severity="error"
             onClose={() => {
-              if (localStorage.getItem('ledfx-cloud-role') === 'creator')
+              if (localStorage.getItem('mls-cloud-role') === 'creator')
                 setInfoAlerts('user', false)
             }}
           >
@@ -286,7 +286,7 @@ const User = () => {
             minWidth: 350
           }}
         >
-          {localStorage.getItem('ledfx-cloud-role') === 'creator' ? (
+          {localStorage.getItem('mls-cloud-role') === 'creator' ? (
             <AvatarPicker storage="cloud" />
           ) : (
             <GitHub sx={{ fontSize: 'min(25vw, 25vh, 150px)' }} />
@@ -306,9 +306,9 @@ const User = () => {
               <Badge
                 sx={{ paddingTop: 2 }}
                 badgeContent={
-                  localStorage.getItem('ledfx-cloud-role') === 'authenticated'
+                  localStorage.getItem('mls-cloud-role') === 'authenticated'
                     ? 'logged in'
-                    : localStorage.getItem('ledfx-cloud-role')
+                    : localStorage.getItem('mls-cloud-role')
                 }
                 color="primary"
               />
@@ -358,9 +358,9 @@ const User = () => {
                   flexGrow: 1
                 }}
               >
-                {localStorage.getItem('ledfx-cloud-role') === 'authenticated'
+                {localStorage.getItem('mls-cloud-role') === 'authenticated'
                   ? 'logged in'
-                  : localStorage.getItem('ledfx-cloud-role')}
+                  : localStorage.getItem('mls-cloud-role')}
               </Typography>
             </AccordionSummary>
           </Accordion>
@@ -743,7 +743,7 @@ const User = () => {
                             Name: configName,
                             Date: +new Date(),
                             config: c,
-                            user: localStorage.getItem('ledfx-cloud-userid')
+                            user: localStorage.getItem('mls-cloud-userid')
                           },
                           {
                             headers: {
@@ -915,7 +915,7 @@ const User = () => {
                           Name: playlistName,
                           Date: +new Date(),
                           playlist: scenePL,
-                          user: localStorage.getItem('ledfx-cloud-userid')
+                          user: localStorage.getItem('mls-cloud-userid')
                         },
                         {
                           headers: {
@@ -1030,22 +1030,20 @@ const User = () => {
               </AccordionSummary>
               <AccordionDetails>
                 <Select
-                  value={
-                    window.localStorage.getItem('ledfx-theme') || 'DarkBlue'
-                  }
+                  value={window.localStorage.getItem('mls-theme') || 'DarkBlue'}
                   fullWidth
                   onChange={(e) => {
                     if (e.target.value === 'DarkBlue') {
-                      window.localStorage.setItem('ledfx-theme', 'DarkBlue')
+                      window.localStorage.setItem('mls-theme', 'DarkBlue')
                       window.location.reload()
                     } else if (e.target.value === 'DarkOrange') {
-                      window.localStorage.setItem('ledfx-theme', 'DarkOrange')
+                      window.localStorage.setItem('mls-theme', 'DarkOrange')
                       window.location.reload()
                     } else if (e.target.value === 'DarkGreen') {
-                      window.localStorage.setItem('ledfx-theme', 'DarkGreen')
+                      window.localStorage.setItem('mls-theme', 'DarkGreen')
                       window.location.reload()
                     } else if (e.target.value === 'DarkRed') {
-                      window.localStorage.setItem('ledfx-theme', 'DarkRed')
+                      window.localStorage.setItem('mls-theme', 'DarkRed')
                       window.location.reload()
                     }
                   }}

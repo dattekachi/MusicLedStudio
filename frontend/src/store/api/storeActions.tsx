@@ -4,13 +4,13 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-cycle */
 import { produce } from 'immer'
-import { Ledfx } from '../../api/ledfx'
+import { Mls } from '../../api/mls'
 import type { IStore, IOpenRgbDevice } from '../useStore'
 import nameToIcon from '../../utils/nameToIcon'
 
 const storeActions = (set: any) => ({
   scanForOpenRgbDevices: async () => {
-    const resp = await Ledfx('/api/find_openrgb', 'GET', {})
+    const resp = await Mls('/api/find_openrgb', 'GET', {})
     if (resp && resp.status === 'success' && resp.devices) {
       set(
         produce((state: IStore) => {
@@ -21,7 +21,7 @@ const storeActions = (set: any) => ({
       )
       resp.devices.map(
         async (d: IOpenRgbDevice) =>
-          await Ledfx('/api/devices', 'POST', {
+          await Mls('/api/devices', 'POST', {
             type: 'openrgb',
             config: {
               icon_name:
@@ -47,7 +47,7 @@ const storeActions = (set: any) => ({
     }
   },
   scanForLaunchpadDevices: async () => {
-    const resp = await Ledfx('/api/find_launchpad', 'GET', {})
+    const resp = await Mls('/api/find_launchpad', 'GET', {})
     if (resp && resp.status === 'success' && resp.device) {
       set(
         produce((state: IStore) => {
@@ -56,7 +56,7 @@ const storeActions = (set: any) => ({
         false,
         'api/scanForDevices'
       )
-      return await Ledfx('/api/devices', 'POST', {
+      return await Mls('/api/devices', 'POST', {
         type: 'launchpad',
         config: {
           center_offset: 0,
@@ -72,7 +72,7 @@ const storeActions = (set: any) => ({
     return false
   },
   scanForDevices: async () => {
-    const resp = await Ledfx('/api/find_devices', 'POST', {
+    const resp = await Mls('/api/find_devices', 'POST', {
       name_to_icon: nameToIcon
     })
     if (!(resp && resp.status === 'success')) {
@@ -88,7 +88,7 @@ const storeActions = (set: any) => ({
 
   paused: false,
   togglePause: async () => {
-    const resp = await Ledfx('/api/virtuals', 'PUT', {})
+    const resp = await Mls('/api/virtuals', 'PUT', {})
     if (resp && resp.paused !== undefined) {
       set(
         produce((s: IStore) => {
@@ -101,22 +101,22 @@ const storeActions = (set: any) => ({
   },
 
   shutdown: async () =>
-    await Ledfx('/api/power', 'POST', {
+    await Mls('/api/power', 'POST', {
       timeout: 0,
       action: 'shutdown',
     }),
   restart: async () =>
-    await Ledfx('/api/power', 'POST', {
+    await Mls('/api/power', 'POST', {
       timeout: 0,
       action: 'restart',
     }),
-  getInfo: async () => await Ledfx('/api/info'),
-  getUpdateInfo: async (snackbar: boolean) => await Ledfx('/api/check_for_updates', 'GET', {}, snackbar),
-  getPing: async (virtId: string) => await Ledfx(`/api/ping/${virtId}`),
-  getImage: async (path_url: string) => await Ledfx('/api/get_image', 'POST', {
+  getInfo: async () => await Mls('/api/info'),
+  getUpdateInfo: async (snackbar: boolean) => await Mls('/api/check_for_updates', 'GET', {}, snackbar),
+  getPing: async (virtId: string) => await Mls(`/api/ping/${virtId}`),
+  getImage: async (path_url: string) => await Mls('/api/get_image', 'POST', {
     path_url
   }),
-  getGifFrames: async (path_url: string) => await Ledfx('/api/get_gif_frames', 'POST', {
+  getGifFrames: async (path_url: string) => await Mls('/api/get_gif_frames', 'POST', {
     path_url
   }),
 })

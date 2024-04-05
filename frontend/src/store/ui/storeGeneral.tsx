@@ -8,7 +8,7 @@ const storeGeneral = (set: any) => ({
     ? 'http://localhost:8888'
     : window.location.href.split('#')[0],
   setHost: (host: any) => {
-    window.localStorage.setItem('ledfx-host', host.title ? host.title : host)
+    window.localStorage.setItem('mls-host', host.title ? host.title : host)
     return set(
       produce((state: IStore) => {
         state.host = host

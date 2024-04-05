@@ -1,14 +1,14 @@
 # -*- mode: python ; coding: utf-8 -*-
 import os
 from hiddenimports import hiddenimports
-from ledfx.consts import PROJECT_VERSION
+from mls.consts import PROJECT_VERSION
 spec_root = os.path.abspath(SPECPATH)
 
 venv_root = os.path.abspath(os.path.join(SPECPATH, '..'))
 block_cipher = None
 
-# Remove the ledfx.env file if it exists
-os.remove("ledfx.env") if os.path.exists("ledfx.env") else None
+# Remove the mls.env file if it exists
+os.remove("mls.env") if os.path.exists("mls.env") else None
 
 # Get environment variables
 github_ref = os.getenv('GITHUB_REF')
@@ -28,14 +28,14 @@ if github_ref and 'refs/tags/' in github_ref:
 else:
     variables.append('IS_RELEASE = false')
 
-# Write to ledfx.env file
-with open('ledfx.env', 'a') as file:
+# Write to mls.env file
+with open('mls.env', 'a') as file:
     file.write('\n'.join(variables))
 
-a = Analysis([f'{spec_root}/ledfx/__main__.py'],
-             pathex=[f'{spec_root}', f'{spec_root}/ledfx'],
+a = Analysis([f'{spec_root}/mls/__main__.py'],
+             pathex=[f'{spec_root}', f'{spec_root}/mls'],
              binaries=[],
-             datas=[(f'{spec_root}/ledfx_frontend', 'ledfx_frontend/'), (f'{spec_root}/ledfx/', 'ledfx/'), (f'{spec_root}/ledfx_assets', 'ledfx_assets/'),(f'{spec_root}/ledfx_assets/tray.png','.'), (f'{spec_root}/ledfx.env','.')],
+             datas=[(f'{spec_root}/mls_frontend', 'mls_frontend/'), (f'{spec_root}/mls/', 'mls/'), (f'{spec_root}/mls_assets', 'mls_assets/'),(f'{spec_root}/mls_assets/tray.png','.'), (f'{spec_root}/mls.env','.')],
              hiddenimports=hiddenimports,
              hookspath=[f'{venv_root}/lib/site-packages/pyupdater/hooks'],
              runtime_hooks=[],
@@ -56,15 +56,15 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           console=SHOW_CONSOLE,
-          icon=f'{spec_root}/ledfx_assets/discord.ico')
+          icon=f'{spec_root}/mls_assets/discord.ico')
 
 app = BUNDLE(exe,
           a.binaries,
           a.zipfiles,
           a.datas,
           name='MusicLedStudio',
-          icon=f'{spec_root}/ledfx_assets/logo.icns',
-          bundle_identifier='com.ledfx.ledfx',
+          icon=f'{spec_root}/mls_assets/logo.icns',
+          bundle_identifier='com.mls.mls',
           version=f'{PROJECT_VERSION}',
           info_plist={
               'CFBundleShortVersionString': f'{PROJECT_VERSION}',
@@ -82,5 +82,5 @@ app = BUNDLE(exe,
               'com.apple.security.device.audio-input': True,
               'com.apple.security.device.microphone': True,
               })
-# Cleanup ledfx.env
-os.remove("ledfx.env")
+# Cleanup mls.env
+os.remove("mls.env")

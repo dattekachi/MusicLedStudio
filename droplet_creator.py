@@ -36,7 +36,7 @@ for frame_counter, x in enumerate(droplet):
 
 # automatically generate filename and save
 dir_path = os.path.dirname(os.path.realpath(__file__))
-droplets_location = os.path.join(dir_path, "ledfx", "effects", "droplets")
+droplets_location = os.path.join(dir_path, "mls", "effects", "droplets")
 assert os.path.isdir(droplets_location)
 
 path = os.path.join(droplets_location, f"{NAME}.npy")

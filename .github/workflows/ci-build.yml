@@ -1,4 +1,4 @@
-name: CI Build LedFx
+name: CI Build MusicLedStudiio
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
     paths-ignore:
       - 'frontend/**'
       - 'docs/**'
-      - 'ledfx_frontend/**'
+      - 'mls_frontend/**'
   schedule:
     - cron: '0 8 * * *'
   workflow_dispatch:
@@ -17,8 +17,8 @@ concurrency:
 
 
 jobs:
-  # build-ledfx-linux:
-  #   name: Build LedFx (Ubuntu)
+  # build-mls-linux:
+  #   name: Build MusicLedStudiio (Ubuntu)
   #   runs-on: ubuntu-latest
   #   strategy:
   #     matrix:
@@ -75,7 +75,7 @@ jobs:
   #       run: |
   #         poetry build
 
-  #     - name: Install LedFx
+  #     - name: Install MusicLedStudiio
   #       run: |
   #         poetry install --with dev
   #     - name: Setup CI sound system
@@ -93,11 +93,11 @@ jobs:
   #       uses: actions/upload-artifact@v4
   #       if: always()
   #       with:
-  #         name: ledfx-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
-  #         path: ${{ github.workspace }}/debug_config/ledfx.log
+  #         name: mls-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
+  #         path: ${{ github.workspace }}/debug_config/mls.log
 
-  build-ledfx-windows:
-    name: Build LedFx (Windows)
+  build-mls-windows:
+    name: Build MusicLedStudiio (Windows)
     runs-on: windows-latest
     strategy:
       matrix:
@@ -160,21 +160,21 @@ jobs:
         run: |
           poetry build
 
-      - name: Install LedFx
+      - name: Install MusicLedStudiio
         run: |
           poetry install --with dev
 
       - name: Run Tests
         run: |
           poetry run pytest -v
-      - name: Attach LedFx test log
+      - name: Attach MusicLedStudiio test log
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ledfx-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
-          path: ${{ github.workspace }}/debug_config/ledfx.log
-  build-ledfx-osx:
-    name: Build LedFx (OS X)
+          name: mls-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
+          path: ${{ github.workspace }}/debug_config/mls.log
+  build-mls-osx:
+    name: Build MusicLedStudiio (OS X)
     runs-on: macos-latest
     strategy:
       matrix:
@@ -231,22 +231,22 @@ jobs:
         run: |
           poetry build
 
-      - name: Install LedFx
+      - name: Install MusicLedStudiio
         run: |
           poetry install --with dev
 
-      - name: Check LedFx launches
+      - name: Check MusicLedStudiio launches
         run: |
-          poetry run ledfx --ci-smoke-test -vv -c debug_config --offline
-      - name: Attach LedFx test log
+          poetry run mls --ci-smoke-test -vv -c debug_config --offline
+      - name: Attach MusicLedStudiio test log
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ledfx-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
-          path: ${{ github.workspace }}/debug_config/ledfx.log
-  build-ledfx-osx-m1:
-    name: Build LedFx (OS X) (Apple Silicon)
-    needs: [build-ledfx-windows, build-ledfx-osx]
+          name: mls-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
+          path: ${{ github.workspace }}/debug_config/mls.log
+  build-mls-osx-m1:
+    name: Build MusicLedStudiio (OS X) (Apple Silicon)
+    needs: [build-mls-windows, build-mls-osx]
     runs-on: macos-14
     strategy:
       matrix:
@@ -303,18 +303,18 @@ jobs:
         run: |
           poetry build
 
-      - name: Install LedFx
+      - name: Install MusicLedStudiio
         run: |
           poetry install --with dev
 
-      - name: Check LedFx launches
+      - name: Check MusicLedStudiio launches
         run: |
-          poetry run ledfx --ci-smoke-test -vv -c debug_config --offline
-      - name: Attach LedFx test log
+          poetry run mls --ci-smoke-test -vv -c debug_config --offline
+      - name: Attach MusicLedStudiio test log
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ledfx-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
-          path: ${{ github.workspace }}/debug_config/ledfx.log
+          name: mls-log-${{ runner.os }}-${{ runner.arch }}-py${{ matrix.python }}.log
+          path: ${{ github.workspace }}/debug_config/mls.log
 
 

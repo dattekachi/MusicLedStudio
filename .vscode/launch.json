@@ -5,11 +5,11 @@
             "name": "MusicLedStudio",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Sentry Enabled",
@@ -20,12 +20,12 @@
             "name": "MusicLedStudio (Verbose Logging)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "args": ["-vv"],
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Sentry Enabled",
@@ -36,12 +36,12 @@
             "name": "MusicLedStudio (Verbose Logging, No Sentry)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "args": ["-vv", "--offline"],
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Sentry Disabled",
@@ -52,12 +52,12 @@
             "name": "MusicLedStudio (No Sentry)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "args": ["--offline"],
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Sentry Disabled",
@@ -68,12 +68,12 @@
             "name": "MusicLedStudio (Temp Config)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "args": ["-c","debug_config", "-p","8887"],
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Temp Config",
@@ -85,12 +85,12 @@
             "name": "MusicLedStudio (Verbose Logging, Temp Config)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "args": ["-vv","-c","debug_config", "-p","8887"],
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Temp Config",
@@ -102,12 +102,12 @@
             "name": "MusicLedStudio (Verbose Logging, No Sentry, Temp Config)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "args": ["-vv", "--offline", "-c","debug_config", "-p","8887"],
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Temp Config",
@@ -119,12 +119,12 @@
             "name": "MusicLedStudio (No Sentry, Temp Config)",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/ledfx/__main__.py",
+            "program": "${workspaceFolder}/mls/__main__.py",
             "args": ["--offline", "-c","debug_config", "-p","8887"],
             "console": "integratedTerminal",
             "justMyCode": false,
             "windows": {
-                "program": "${workspaceFolder}\\ledfx\\__main__.py"
+                "program": "${workspaceFolder}\\mls\\__main__.py"
             },
             "presentation": {
                 "group": "Temp Config",

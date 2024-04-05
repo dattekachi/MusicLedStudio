@@ -59,16 +59,16 @@ class ErrorBoundary extends Component<Props, State> {
             }}
             onClick={() => {
               window.localStorage.removeItem('undefined')
-              window.localStorage.removeItem('ledfx-storage')
-              window.localStorage.removeItem('ledfx-host')
-              window.localStorage.removeItem('ledfx-hosts')
-              window.localStorage.removeItem('ledfx-frontend')
-              window.localStorage.removeItem('ledfx-cloud-role')
-              window.localStorage.removeItem('ledfx-cloud-userid')
-              window.localStorage.removeItem('ledfx-theme')
+              window.localStorage.removeItem('mls-storage')
+              window.localStorage.removeItem('mls-host')
+              window.localStorage.removeItem('mls-hosts')
+              window.localStorage.removeItem('mls-frontend')
+              window.localStorage.removeItem('mls-cloud-role')
+              window.localStorage.removeItem('mls-cloud-userid')
+              window.localStorage.removeItem('mls-theme')
               window.localStorage.removeItem('jwt')
               window.localStorage.removeItem('username')
-              window.localStorage.removeItem('ledfxmod')
+              window.localStorage.removeItem('mlsmod')
               window.location.reload()
             }}
           >

@@ -6,9 +6,9 @@ authors = ["MusicLedStudio Developers"]
 license = "GPL-3.0 License"
 readme = "README.rst"
 packages = [
-	{include = "ledfx"},
-	{include = "ledfx_frontend"},
-    {include = "ledfx_assets"},
+	{include = "mls"},
+	{include = "mls_frontend"},
+    {include = "mls_assets"},
     {include = "loopback"},
 ]
 include = [
@@ -16,12 +16,12 @@ include = [
     "AUTHORS.rst",
     "CHANGELOG.rst",
     "LICENSE.txt",
-    "ledfx.env"
+    "mls.env"
 ]
 
 [tool.poetry.scripts]
-ledfx = "ledfx.__main__:main"
-ledfx-loopback-install = "loopback.__main__:copy_lib"
+mls = "mls.__main__:main"
+mls-loopback-install = "loopback.__main__:copy_lib"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
